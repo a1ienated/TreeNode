@@ -1,7 +1,6 @@
 #include <iostream>
 #include <list>
 #include <string>
-//#include <boost\variant.hpp>
 #include <boost/variant.hpp>
 
 typedef boost::variant<int, float, double, std::string> customVariant;
