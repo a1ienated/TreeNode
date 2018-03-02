@@ -1,3 +1,4 @@
 ﻿  node.cpp
+d:\projects\vs2015\node\treenode\node.cpp(108): warning C4114: множественное использование одного и того же квалификатора типа
   TreeNode.vcxproj -> D:\Projects\VS2015\Node\Debug\TreeNode.exe
   TreeNode.vcxproj -> D:\Projects\VS2015\Node\Debug\TreeNode.pdb (Full PDB)
