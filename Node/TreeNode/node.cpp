@@ -66,9 +66,9 @@ private:
 	string name = "";
 };*/
 
-
 string path = "myFile.txt";
 
+//класс-заготовка для отработки сереализации/десериализации
 class Point {
 public:
 	Point() {
@@ -80,7 +80,7 @@ public:
 		this->z = z;
 	}
 	~Point() {}
-
+		
 private:
 	int x, y, z;
 	friend ostream& operator<< (ostream& os, const Point& point);
@@ -159,18 +159,11 @@ void outputFile() {
 	}
 	else {
 		cout << "File is open. Content:" << endl;
-		//посимвольный вариант считывания
-		/*char ch;
-		while (fRead.get(ch)) { //метод get считывает посимвольно
-		cout << ch;
-		}*/
-		//построчный вариант считывания
-		//eof() - это функция, которая возвращает true, если обнаружен конец файла.
 		string str;
 		while (!fRead.eof()) {
 			str = "";
 			//fRead >> str;
-			getline(fRead, str); // std::пропускает пробелы но учитывает '\n'
+			getline(fRead, str);
 			cout << str << endl;
 		}
 	}
@@ -179,9 +172,9 @@ void outputFile() {
 
 int main(int argc, char const *argv[]) {
 	if (argc > 1) validateFlags(argv, argc);
-	else printf("[+] Congratulations!\n");
+	else printf("Program running.\n");
 	invokeCommands(argv, argc);
-
+	
 	/*Node *parentNode = new Node("node0", "root");
 	Node *pointerToNode = new Node("node1", 8, parentNode);
 	pointerToNode = new Node("node2", "bar", parentNode);
@@ -189,7 +182,6 @@ int main(int argc, char const *argv[]) {
 	pointerToNode = new Node("node4", "baz", pointerToNode);
 	parentNode->print();
 	delete parentNode;*/
-
 
 	return 0;
 }
