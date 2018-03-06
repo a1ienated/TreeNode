@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <list>
 #include <string>
 #include <fstream>
@@ -67,7 +67,7 @@ private:
 	string name = "";
 };*/
 
-//êëàññ-çàãîòîâêà äëÿ îòðàáîòêè ñåðåàëèçàöèè/äåñåðèàëèçàöèè
+//ÐºÐ»Ð°ÑÑ-Ð·Ð°Ð³Ð¾Ñ‚Ð¾Ð²ÐºÐ° Ð´Ð»Ñ Ð¾Ñ‚Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸ ÑÐµÑ€ÐµÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸/Ð´ÐµÑÐµÑ€Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸
 class Point {
 public:
 	Point() {
@@ -109,7 +109,7 @@ void validateFlags(const char * const flags[], const int const length) {
 				incorrectFlagIndex = -1;
 				break;
 			}
-			else incorrectFlagIndex = i; //ñîõðàíÿåì èíäåêñ íåêîððåêòíîãî ôëàãà
+			else incorrectFlagIndex = i; //ÑÐ¾Ñ…Ñ€Ð°Ð½ÑÐµÐ¼ Ð¸Ð½Ð´ÐµÐºÑ Ð½ÐµÐºÐ¾Ñ€Ñ€ÐµÐºÑ‚Ð½Ð¾Ð³Ð¾ Ñ„Ð»Ð°Ð³Ð°
 		}
 
 		if (incorrectFlagIndex > -1) {
