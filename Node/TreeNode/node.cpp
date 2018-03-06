@@ -9,6 +9,7 @@ using namespace std;
 /*
 typedef boost::variant<int, float, double, string> customVariant;
 
+
 class Node {
 public:
 	Node() {}
@@ -66,8 +67,6 @@ private:
 	string name = "";
 };*/
 
-string path = "myFile.txt";
-
 //класс-заготовка для отработки сереализации/десериализации
 class Point {
 public:
@@ -87,7 +86,6 @@ private:
 	friend istream& operator>> (istream& is, Point& point);
 };
 
-
 ostream& operator<< (ostream& os, const Point& point) {
 	os << point.x << " " << point.y << " " << point.z;
 	return os;
@@ -98,11 +96,8 @@ istream& operator>> (istream& is, Point& point) {
 	return is;
 }
 
-void inputFile();
-void outputFile();
+char *allowedFlags[] = { "--o", "--i" };
 
-char *allowedFlags[] = { "--i", "--o" };
-void(*commandsStore[])(void) = { inputFile, outputFile };
 int allowedFlagsLength = sizeof allowedFlags / sizeof allowedFlags[0];
 
 void validateFlags(const char * const flags[], const int const length) {
@@ -124,34 +119,27 @@ void validateFlags(const char * const flags[], const int const length) {
 	}
 }
 
-void invokeCommands(const char * const commands[], const int count) {
-	for (int i = 1; i < count; i++) {
-		for (int j = 0; j < allowedFlagsLength; j++) {
-			if (strcmp(commands[i], allowedFlags[j]) == 0) {
-				commandsStore[j]();
-			}
-		}
-	}
-}
-
-void inputFile() {
+void outputFile(Point& point) {
 	ofstream fWrite;
-	Point point(63, 812, 37);
+	string path = "output.txt";
 
 	fWrite.open(path, ofstream::app);
 	if (!fWrite.is_open()) {
 		cout << "Error open file!" << endl;
 	}
 	else {
-		cout << "Enter data: ";
+		//cout << "Enter data: ";
 		fWrite << "\n" << point;
 		cout << "Data recorded!" << endl;
 	}
 	fWrite.close();
 }
 
-void outputFile() {
+void inputFile(Point& point) {
 	ifstream fRead;
+	ofstream fWrite;
+	string path = "input.txt";
+	fWrite.open(path, ofstream::app);
 
 	fRead.open(path);
 	if (!fRead.is_open()) {
@@ -170,10 +158,24 @@ void outputFile() {
 	fRead.close();
 }
 
+void(*commandsStore[])(Point& point) = { outputFile, inputFile };
+
+void callCommands(const char * const commands[], const int count, Point& point) {
+	for (int i = 1; i < count; i++) {
+		for (int j = 0; j < allowedFlagsLength; j++) {
+			if (strcmp(commands[i], allowedFlags[j]) == 0) {
+				commandsStore[j](point);
+			}
+		}
+	}
+}
+
 int main(int argc, char const *argv[]) {
 	if (argc > 1) validateFlags(argv, argc);
 	else printf("Program running.\n");
-	invokeCommands(argv, argc);
+		
+	Point point(333, 333, 333);
+	callCommands(argv, argc, point);
 	
 	/*Node *parentNode = new Node("node0", "root");
 	Node *pointerToNode = new Node("node1", 8, parentNode);
