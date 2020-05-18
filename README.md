@@ -1,2 +1,2 @@
 # TreeNode
-Да, в коде присутствует процедурщина, постараюсь ее исправить.
+Implementation of a tree with nodes of 4 different types. With the ablity to serialize / deserialize.
